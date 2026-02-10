@@ -1,0 +1,71 @@
+/*
+BRONZE TABLES
+Checks to see whether a table already exists, if it does, it will delete the table and create a new table.
+*/
+
+IF OBJECT_ID ('bronze.crm_cust_info','U') IS NOT NULL
+	DROP TABLE bronze.crm_cust_info;
+
+CREATE TABLE bronze.crm_cust_info (
+cst_id INT,
+cst_key NVARCHAR(50),
+cst_firstname NVARCHAR(50),
+cst_material_status NVARCHAR (50),
+cst_gndr NVARCHAR (50),
+cst_create_date DATE
+);
+
+IF OBJECT_ID ('bronze.crm_prd_info','U') IS NOT NULL
+	DROP TABLE bronze.crm_prd_info;
+
+CREATE TABLE bronze.crm_prd_info (
+prd_id INT,
+prd_key NVARCHAR(50),
+prd_nm NVARCHAR (50),
+prd_cost DECIMAL(10,2),
+prd_line VARCHAR (10),
+prd_start_dt DATETIME,
+prd_end_dt DATETIME
+);
+
+IF OBJECT_ID ('bronze.crm_sales_details','U') IS NOT NULL
+	DROP TABLE bronze.crm_sales_details;
+
+CREATE TABLE bronze.crm_sales_details (
+sls_order_num VARCHAR(50),
+sls_prd_key VARCHAR(50),
+sls_cust_id INT,
+sls_order_dt INT,
+sls_ship_dt INT,
+sls_due_dt INT,
+sls_sales DECIMAL(10,2),
+sls_quantity INT,
+sls_price DECIMAL(10,2)
+);
+
+IF OBJECT_ID ('bronze.erp_cust_details','U') IS NOT NULL
+	DROP TABLE bronze.erp_cust_details;
+
+CREATE TABLE bronze.erp_cust_details(
+cid VARCHAR(50),
+bdate DATE,
+gen VARCHAR(10)
+);
+
+IF OBJECT_ID ('bronze.erp_loc_details','U') IS NOT NULL
+	DROP TABLE bronze.erp_loc_details;
+
+CREATE TABLE bronze.erp_loc_details(
+cid VARCHAR(50),
+cntry VARCHAR(50)
+);
+
+IF OBJECT_ID ('bronze.erp_prd_cat_details','U') IS NOT NULL
+	DROP TABLE bronze.erp_prd_cat_details;
+
+CREATE TABLE bronze.erp_prd_cat_details(
+id VARCHAR(10),
+cat VARCHAR(50),
+subcat VARCHAR(50),
+maintenance VARCHAR(10)
+);
